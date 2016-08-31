@@ -8,5 +8,22 @@
 
 import Foundation
 
-print("Hello, World!")
+var n = Int(readLine()!)!
+
+var matrix: [[Int]] = []
+
+for i in 0..<n {
+    let matrixLine = readLine()!
+    let arr = matrixLine.characters.split(" ").map { Int(String($0))! }
+    matrix.append(arr)
+}
+
+var diag = (0, 0)
+
+for (x,y) in Zip2Sequence((0..<n).reverse(), (0..<n)) {
+    diag.0 += matrix[x][x]
+    diag.1 += matrix[x][y]
+}
+
+print(abs(diag.0 - diag.1))
 
